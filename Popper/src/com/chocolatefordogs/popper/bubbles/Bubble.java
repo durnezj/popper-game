@@ -5,6 +5,7 @@ package com.chocolatefordogs.popper.bubbles;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
 
 /**
  * @author Matthew Cory
@@ -13,6 +14,18 @@ import java.util.Collection;
 public final class Bubble {
 	
 	public static final int HIT_THRESHOLD = 4;
+	
+	public Bubble() { }
+	
+	public Bubble(final int initHitCount) {
+		this();
+		hitCount = initHitCount;
+	}
+	
+	public static Bubble createRandom() {
+		final int randHitCount = random.nextInt((HIT_THRESHOLD + 1));
+		return new Bubble(randHitCount);
+	}
 	
 	public void addBubbleEventListener(final BubbleEventListener bubbleEventListener) {
 		bubbleEventListeners.add(bubbleEventListener);
@@ -41,4 +54,5 @@ public final class Bubble {
 	
 	private final Collection<BubbleEventListener> bubbleEventListeners = new ArrayList<BubbleEventListener>();
 
+	private static Random random = new Random();
 }
